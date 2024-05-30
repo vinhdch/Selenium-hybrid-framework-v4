@@ -3,6 +3,8 @@
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/libraries/selenium-server-4.16.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/libraries/testng-7.8.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libraries/commons-codec-1.16.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libraries/selenium-devtools-v125-4.21.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
