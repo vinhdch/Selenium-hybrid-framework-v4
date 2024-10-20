@@ -8,8 +8,6 @@ import org.openqa.selenium.devtools.v125.network.Network;
 import org.openqa.selenium.devtools.v125.network.model.Headers;
 import org.testng.annotations.Test;
 
-
-import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
