@@ -1,6 +1,6 @@
-package pageObjects;
+package pageObjects.nopcommerce;
 
-import PageUIs.LoginPageUI;
+import PageUIs.nopcommerce.LoginPageUI;
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
 
@@ -24,5 +24,11 @@ public class LoginPageObject extends BasePage {
     public void clickLoginButton() {
         waitForElementVisible(driver, LoginPageUI.LOGIN_BUTTON);
         clickToElement(driver, LoginPageUI.LOGIN_BUTTON);
+    }
+    public LoginPageObject login(String emailAddress, String password) {
+        enterEmailTextbox(emailAddress);
+        enterPasswordTextbox(password);
+        clickLoginButton();
+        return new LoginPageObject(driver);
     }
 }

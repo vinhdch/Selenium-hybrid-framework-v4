@@ -1,4 +1,4 @@
-package PageUIs;
+package PageUIs.nopcommerce;
 
 public class CustomerInfoPageUI {
 

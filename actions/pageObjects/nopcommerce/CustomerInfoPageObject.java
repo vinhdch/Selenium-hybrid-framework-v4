@@ -1,6 +1,6 @@
-package pageObjects;
+package pageObjects.nopcommerce;
 
-import PageUIs.CustomerInfoPageUI;
+import PageUIs.nopcommerce.CustomerInfoPageUI;
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
 

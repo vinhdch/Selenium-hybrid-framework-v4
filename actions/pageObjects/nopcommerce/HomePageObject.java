@@ -1,6 +1,6 @@
-package pageObjects;
+package pageObjects.nopcommerce;
 
-import PageUIs.HomePageUI;
+import PageUIs.nopcommerce.HomePageUI;
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
 
