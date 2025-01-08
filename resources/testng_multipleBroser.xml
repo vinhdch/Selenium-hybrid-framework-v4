@@ -5,21 +5,21 @@
     <parameter name="url" value="https://opensource-demo.orangehrmlive.com"/>
 
     <test name="Run on chrome">
-        <parameter name="browserName" value="chrome"/>
+        <parameter name="browserName" value="CHROME"/>
         <classes>
             <class name="orangehrm.employee.Level_4_Multiple_Browser"/>
         </classes>
     </test>
 
     <test name="Run on Firefox">
-        <parameter name="browserName" value="firefox"/>
+        <parameter name="browserName" value="fireFox"/>
         <classes>
             <class name="orangehrm.employee.Level_4_Multiple_Browser"/>
         </classes>
     </test>
 
     <test name="Run on Edge">
-        <parameter name="browserName" value="edge"/>
+        <parameter name="browserName" value="Edge"/>
         <classes>
             <class name="orangehrm.employee.Level_4_Multiple_Browser"/>
         </classes>

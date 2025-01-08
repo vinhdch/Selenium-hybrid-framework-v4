@@ -12,6 +12,6 @@
     </content>
     <orderEntry type="jdk" jdkName="21" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="selenium-server-4.16.1" level="project" />
+    <orderEntry type="library" exported="" name="selenium-server-4.26.0" level="project" />
   </component>
 </module>

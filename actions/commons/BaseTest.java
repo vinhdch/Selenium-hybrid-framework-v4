@@ -12,16 +12,17 @@ public class BaseTest {
     WebDriver driver;
 
      protected WebDriver getBrowserDriverName(String url, String browser) {
-         switch (browser) {
-             case "chrome": {
+         BrowserType browserType = BrowserType.valueOf(browser.toUpperCase());
+         switch (browserType) {
+             case CHROME: {
                  driver = new ChromeDriver();
                  break;
              }
-             case "edge": {
+             case EDGE: {
                  driver = new EdgeDriver();
                  break;
              }
-             case "firefox": {
+             case FIREFOX: {
                  driver = new FirefoxDriver();
                  break;
              }
