@@ -1,10 +1,7 @@
 package com.nopcommerce.users;
 
-import commons.BasePage;
 import commons.BaseTest;
-import commons.PageManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -17,7 +14,7 @@ import pageObjects.nopcommerce.RegisterPageObject;
 
 import java.util.Random;
 
-public class Level_4_PageFactory extends BaseTest {
+public class Level_6_PageGenerator_I extends BaseTest {
     WebDriver driver;
     HomePageObject homePage;
     LoginPageObject loginPage;
@@ -29,23 +26,20 @@ public class Level_4_PageFactory extends BaseTest {
     @Parameters({"url", "browserName"})
     @BeforeClass
     public void beforeClass(String urlValue, String browser) {
-
         driver = getBrowserDriverName(urlValue, browser);
-
-        homePage = (HomePageObject) PageManager.getPage(driver, "HomePage");
 
         firstname = "John";
         lastname = "Nathan";
         email = "kangugu" + generateFakeNumber() +"@gmail.com";
-        password = "qwertyuiop2345$%$%";
+        password = "qwertyuiop2345$%$%0";
 
+        homePage = new HomePageObject(driver);
     }
 
     @Test
     public void TC_01_Register() {
-        homePage.clickToRegisterLink();
 
-        registerPage = new RegisterPageObject(driver);
+        registerPage = homePage.clickToRegisterLink();;
 
         registerPage.enterFirstNameTextbox(firstname);
         registerPage.enterLastNameTextbox(lastname);
@@ -56,29 +50,24 @@ public class Level_4_PageFactory extends BaseTest {
 
         Assert.assertEquals(registerPage.getRegisterSuccessMessage(), "Your registration completed");
 
-        registerPage.clickLogoutLink();
-
-        homePage = (HomePageObject) PageManager.getPage(driver, "HomePage");
+        homePage = registerPage.clickLogoutLink();
     }
 
     @Test
     public void TC_02_Login() {
-        homePage.clickLoginLink();
 
-        loginPage = (LoginPageObject) PageManager.getPage(driver,"LoginPage");
+        loginPage = homePage.clickLoginLink();
 
         loginPage.enterEmailTextbox(email);
         loginPage.enterPasswordTextbox(password);
-        loginPage.clickLoginButton();
 
-        homePage = (HomePageObject) PageManager.getPage(driver, "HomePage");
+        homePage = loginPage.clickLoginButton();
     }
 
     @Test
     public void TC_03_CustomerInfo() {
-        homePage.clickMyAccountLink();
 
-        customerInfoPage = (CustomerInfoPageObject) PageManager.getPage(driver, "CustomerInfoPage");
+        customerInfoPage = homePage.clickMyAccountLink();;
 
         Assert.assertEquals(customerInfoPage.getFirstNameValue(), firstname);
         Assert.assertEquals(customerInfoPage.getLastNameValue(), lastname);

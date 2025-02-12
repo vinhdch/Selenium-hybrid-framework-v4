@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import pageObjects.orangehrm.DashboardPageObject;
 import pageObjects.orangehrm.LoginPageObject;
 
-public class Level_4_Multiple_Browser extends BaseTest {
+public class Level_5_Multiple_Browser extends BaseTest {
 
     private WebDriver driver;
     private LoginPageObject loginPage;
