@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="nopCommerce">
+
+    <parameter name="url" value="http://localhost/"/>
+
+    <test name="Run on Edge">
+        <parameter name="browserName" value="Edge"/>
+        <classes>
+            <class name="com.nopcommerce.users.SwitchPage"/>
+        </classes>
+    </test>
+
+<!--    <test name="Run on chrome">-->
+<!--        <parameter name="browserName" value="CHROME"/>-->
+<!--        <classes>-->
+<!--            <class name="orangehrm.employee.Level_5_Multiple_Browser"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--    <test name="Run on Edge">-->
+<!--        <parameter name="browserName" value="Edge"/>-->
+<!--        <classes>-->
+<!--            <class name="orangehrm.employee.Level_5_Multiple_Browser"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+</suite>

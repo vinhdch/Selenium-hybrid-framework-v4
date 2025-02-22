@@ -6,6 +6,7 @@ import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjects.nopcommerce.*;
 
 import java.time.Duration;
 import java.util.List;
@@ -318,4 +319,29 @@ public class BasePage {
         return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.elementToBeSelected(getByXpath(locator)));
     }
 
+    // General switch page
+    public AddressesPageObject OpenAddressPage(WebDriver driver) {
+        waitForElementVisible(driver, GlobalConstants.ADDRESSES_LINK);
+        clickToElement(driver, GlobalConstants.ADDRESSES_LINK);
+        return PageGeneratorManager.getPageInstance(AddressesPageObject.class, driver);
+    }
+
+    public RewardPointsPageObject OpenRewardPointsPage(WebDriver driver) {
+        waitForElementVisible(driver, GlobalConstants.REWARD_POINTS_LINK);
+        clickToElement(driver, GlobalConstants.REWARD_POINTS_LINK);
+        return PageGeneratorManager.getPageInstance(RewardPointsPageObject.class, driver);
+    }
+
+
+    public CustomerInfoPageObject OpenCustomerInfoPage(WebDriver driver) {
+        waitForElementVisible(driver, GlobalConstants.CUSTOMER_INFO_LINK);
+        clickToElement(driver, GlobalConstants.CUSTOMER_INFO_LINK);
+        return PageGeneratorManager.getPageInstance(CustomerInfoPageObject.class, driver);
+    }
+
+    public OrdersPageObject OpenOrdersPage(WebDriver driver) {
+        waitForElementVisible(driver, GlobalConstants.ORDERS_LINK);
+        clickToElement(driver, GlobalConstants.ORDERS_LINK);
+        return PageGeneratorManager.getPageInstance(OrdersPageObject.class, driver);
+    }
 }
