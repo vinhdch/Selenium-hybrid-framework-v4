@@ -1,4 +1,4 @@
-package PageUIs.nopcommerce;
+package PageUIs.nopcommerce.sidebar;
 
 public class CustomerInfoPageUI {
 

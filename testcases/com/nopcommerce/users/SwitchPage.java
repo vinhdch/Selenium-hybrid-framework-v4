@@ -8,8 +8,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.nopcommerce.*;
-
-import java.util.Random;
+import pageObjects.nopcommerce.sidebar.AddressesPageObject;
+import pageObjects.nopcommerce.sidebar.CustomerInfoPageObject;
+import pageObjects.nopcommerce.sidebar.OrdersPageObject;
+import pageObjects.nopcommerce.sidebar.RewardPointsPageObject;
 
 public class SwitchPage extends BaseTest {
     WebDriver driver;
@@ -29,7 +31,7 @@ public class SwitchPage extends BaseTest {
 
         firstname = "John";
         lastname = "Nathan";
-        email = "orangehrm" + generateFakeNumber() +"@gmail.com";
+        email = "orangehrm" + generateFakeNumber() + "@gmail.com";
         password = "qwerp2345$%$%0";
 
         homePage = PageGeneratorManager.getPageInstance(HomePageObject.class, driver);
@@ -38,7 +40,7 @@ public class SwitchPage extends BaseTest {
     @Test
     public void TC_01_Register() {
 
-        registerPage = homePage.clickToRegisterLink();;
+        registerPage = homePage.clickToRegisterLink();
 
         registerPage.enterFirstNameTextbox(firstname);
         registerPage.enterLastNameTextbox(lastname);
@@ -66,7 +68,7 @@ public class SwitchPage extends BaseTest {
     @Test
     public void TC_03_CustomerInfo() {
 
-        customerInfoPage = homePage.clickMyAccountLink();;
+        customerInfoPage = homePage.clickMyAccountLink();
 
         Assert.assertEquals(customerInfoPage.getFirstNameValue(), firstname);
         Assert.assertEquals(customerInfoPage.getLastNameValue(), lastname);
@@ -77,7 +79,7 @@ public class SwitchPage extends BaseTest {
     public void TC_04_SwitchPage() {
 
         // customer -> address
-         addressesPage = customerInfoPage.OpenAddressPage(driver);
+        addressesPage = customerInfoPage.OpenAddressPage(driver);
 
         // address -> Reward points
         rewardPointsPage = addressesPage.OpenRewardPointsPage(driver);

@@ -1,12 +1,12 @@
-package pageObjects.nopcommerce;
+package pageObjects.nopcommerce.sidebar;
 
-import commons.BasePage;
 import org.openqa.selenium.WebDriver;
 
-public class RewardPointsPageObject extends BasePage {
+public class RewardPointsPageObject extends SidebarPageObject {
     private WebDriver driver;
 
     public RewardPointsPageObject(WebDriver driver) {
+        super(driver);
         this.driver = driver;
     }
 

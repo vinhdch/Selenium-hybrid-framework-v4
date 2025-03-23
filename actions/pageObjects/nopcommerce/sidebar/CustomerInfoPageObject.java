@@ -1,13 +1,13 @@
-package pageObjects.nopcommerce;
+package pageObjects.nopcommerce.sidebar;
 
-import PageUIs.nopcommerce.CustomerInfoPageUI;
-import commons.BasePage;
+import PageUIs.nopcommerce.sidebar.CustomerInfoPageUI;
 import org.openqa.selenium.WebDriver;
 
-public class CustomerInfoPageObject extends BasePage {
+public class CustomerInfoPageObject extends SidebarPageObject {
     private WebDriver driver;
 
-    public CustomerInfoPageObject (WebDriver driver) {
+    public CustomerInfoPageObject(WebDriver driver) {
+        super(driver);
         this.driver = driver;
     }
 

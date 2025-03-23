@@ -3,10 +3,10 @@ package commons;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageObjects.nopcommerce.*;
 
 import java.time.Duration;
 import java.util.List;
@@ -18,7 +18,8 @@ public class BasePage {
         return new BasePage();
     }
 
-    private long LONG_TIMEOUT = 30;
+    private long longTimeout = GlobalConstants.LONG_TIMEOUT;
+    private long shortTimeout = GlobalConstants.SHORT_TIMEOUT;
 
     public void openPageUrl(WebDriver driver, String pageUrl) {
         driver.get(pageUrl);
@@ -48,8 +49,20 @@ public class BasePage {
         driver.navigate().refresh();
     }
 
+    public Set<Cookie> getAllCookies(WebDriver driver) {
+        return driver.manage().getCookies();
+    }
+
+    public void setCookies(WebDriver driver, Set<Cookie> cookies) {
+
+        for (Cookie cookie : cookies) {
+            driver.manage().addCookie(cookie);
+        }
+        sleepInSecond(longTimeout);
+    }
+
     private Alert waitToAlertPresent(WebDriver driver) {
-        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.alertIsPresent());
+        return new WebDriverWait(driver, Duration.ofSeconds(longTimeout)).until(ExpectedConditions.alertIsPresent());
     }
 
     public void acceptAlert(WebDriver driver) {
@@ -129,12 +142,12 @@ public class BasePage {
         return new Select(getWebElement(driver, locator)).getFirstSelectedOption().getText();
     }
 
-    public boolean  isDropdownMultiple(WebDriver driver, String locator) {
+    public boolean isDropdownMultiple(WebDriver driver, String locator) {
         return new Select(getWebElement(driver, locator)).isMultiple();
     }
 
     public void selectItemInCustomDropdown(WebDriver driver, String parentXpath, String childXpath, String textItem) {
-        WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT));
+        WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(longTimeout));
         explicitWait.until(ExpectedConditions.elementToBeClickable(getByXpath(parentXpath))).click();
         sleepInSecond(2);
 
@@ -148,7 +161,7 @@ public class BasePage {
         }
     }
 
-    public void sleepInSecond(long timeSecond)  {
+    public void sleepInSecond(long timeSecond) {
         try {
             Thread.sleep(timeSecond);
         } catch (InterruptedException e) {
@@ -190,6 +203,38 @@ public class BasePage {
 
     public boolean isElementDisplayed(WebDriver driver, String locator) {
         return getWebElement(driver, locator).isDisplayed();
+    }
+
+    public void overrideGlobalTimeout(WebDriver driver, long timeout) {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(shortTimeout));
+    }
+
+    public boolean isElementUndisplayed(WebDriver driver, String locator) {
+        overrideGlobalTimeout(driver, shortTimeout);
+
+        List<WebElement> elements = getListWebElement(driver, locator);
+
+        overrideGlobalTimeout(driver, shortTimeout);
+
+        if (elements.size() == 0) {
+            return true;
+        } else if (elements.size() > 0 && !elements.get(0).isDisplayed()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void uploadMulipleFiles(WebDriver driver, String... fileNames) {
+
+        String filePath = GlobalConstants.UPLOAD_FILE;
+        String fullFileName = "";
+
+        for (String file : fileNames) {
+            fullFileName = fullFileName + filePath + file + "\n";
+        }
+        fullFileName = fullFileName.trim();
+        getWebElement(driver, GlobalConstants.UPLOAD_FILE_JQUERY).sendKeys(fullFileName);
     }
 
     public boolean isElementSelected(WebDriver driver, String locator) {
@@ -287,61 +332,93 @@ public class BasePage {
                 , getWebElement(driver, locator));
     }
 
+    protected boolean areJQueryAndJSLoadedSuccess(WebDriver driver) {
+        WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(longTimeout));
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+
+        ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
+            @Override
+            public Boolean apply(WebDriver driver) {
+                try {
+                    return ((Long) jsExecutor.executeScript("return jQuery.active") == 0);
+                } catch (Exception e) {
+                    return true;
+                }
+            }
+        };
+        ExpectedCondition<Boolean> jsLoad = new ExpectedCondition<Boolean>() {
+            @Override
+            public Boolean apply(WebDriver driver) {
+                return jsExecutor.executeScript("return document.readyState").toString().equals("complete");
+            }
+        };
+        return explicitWait.until(jQueryLoad) && explicitWait.until(jsLoad);
+    }
+
+    protected boolean isPageLoadedSuccess(WebDriver driver) {
+        WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(longTimeout));
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
+            @Override
+            public Boolean apply(WebDriver driver) {
+                // TODO Auto-generated method stub
+                return (Boolean) jsExecutor.executeScript("return (window.jQuery!=null) && (jQuery.active===0);");
+            }
+        };
+        ExpectedCondition<Boolean> jsLoad = new ExpectedCondition<Boolean>() {
+            @Override
+            public Boolean apply(WebDriver driver) {
+                // TODO Auto-generated method stub
+                return jsExecutor.executeScript("return document.readyState").toString().equals("complete");
+            }
+        };
+        return explicitWait.until(jQueryLoad) && explicitWait.until(jsLoad);
+    }
+
+    protected WebElement getShahowDOM(WebDriver driver, String locatorType) {
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        WebElement element = (WebElement) jsExecutor.executeAsyncScript("return arguments[0].shadowRoot", getWebElement(driver, locatorType));
+        return element;
+    }
+
     public WebElement waitForElementVisible(WebDriver driver, String locator) {
-        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.visibilityOfElementLocated(getByXpath(locator)));
+        return new WebDriverWait(driver, Duration.ofSeconds(longTimeout)).until(ExpectedConditions.visibilityOfElementLocated(getByXpath(locator)));
     }
 
     public boolean waitForElementInvisible(WebDriver driver, String locator) {
-        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.invisibilityOfElementLocated(getByXpath(locator)));
+        return new WebDriverWait(driver, Duration.ofSeconds(longTimeout)).until(ExpectedConditions.invisibilityOfElementLocated(getByXpath(locator)));
     }
 
     public List<WebElement> waitForAllElementVisible(WebDriver driver, String locator) {
-        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(getByXpath(locator)));
+        return new WebDriverWait(driver, Duration.ofSeconds(longTimeout)).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(getByXpath(locator)));
     }
 
     public boolean waitForAllElementInvisible(WebDriver driver, String locator) {
-        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.invisibilityOfAllElements(getListWebElement(driver, locator)));
+        return new WebDriverWait(driver, Duration.ofSeconds(longTimeout)).until(ExpectedConditions.invisibilityOfAllElements(getListWebElement(driver, locator)));
     }
 
     public WebElement waitForElementClickable(WebDriver driver, String locator) {
-        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.elementToBeClickable(getByXpath(locator)));
+        return new WebDriverWait(driver, Duration.ofSeconds(longTimeout)).until(ExpectedConditions.elementToBeClickable(getByXpath(locator)));
     }
 
     public WebElement waitForElementPresence(WebDriver driver, String locator) {
-        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.presenceOfElementLocated(getByXpath(locator)));
+        return new WebDriverWait(driver, Duration.ofSeconds(longTimeout)).until(ExpectedConditions.presenceOfElementLocated(getByXpath(locator)));
     }
 
     public List<WebElement> waitForAllElementPresence(WebDriver driver, String locator) {
-        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByXpath(locator)));
+        return new WebDriverWait(driver, Duration.ofSeconds(longTimeout)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByXpath(locator)));
     }
 
     public boolean waitForElementSelected(WebDriver driver, String locator) {
-        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.elementToBeSelected(getByXpath(locator)));
+        return new WebDriverWait(driver, Duration.ofSeconds(longTimeout)).until(ExpectedConditions.elementToBeSelected(getByXpath(locator)));
     }
 
-    // General switch page
-    public AddressesPageObject OpenAddressPage(WebDriver driver) {
-        waitForElementVisible(driver, GlobalConstants.ADDRESSES_LINK);
-        clickToElement(driver, GlobalConstants.ADDRESSES_LINK);
-        return PageGeneratorManager.getPageInstance(AddressesPageObject.class, driver);
-    }
-
-    public RewardPointsPageObject OpenRewardPointsPage(WebDriver driver) {
-        waitForElementVisible(driver, GlobalConstants.REWARD_POINTS_LINK);
-        clickToElement(driver, GlobalConstants.REWARD_POINTS_LINK);
-        return PageGeneratorManager.getPageInstance(RewardPointsPageObject.class, driver);
-    }
-
-
-    public CustomerInfoPageObject OpenCustomerInfoPage(WebDriver driver) {
-        waitForElementVisible(driver, GlobalConstants.CUSTOMER_INFO_LINK);
-        clickToElement(driver, GlobalConstants.CUSTOMER_INFO_LINK);
-        return PageGeneratorManager.getPageInstance(CustomerInfoPageObject.class, driver);
-    }
-
-    public OrdersPageObject OpenOrdersPage(WebDriver driver) {
-        waitForElementVisible(driver, GlobalConstants.ORDERS_LINK);
-        clickToElement(driver, GlobalConstants.ORDERS_LINK);
-        return PageGeneratorManager.getPageInstance(OrdersPageObject.class, driver);
+    /*
+     * wait for element inDOM or not in DOM & over implicit timeoout
+     */
+    public void waitForElementUndisplayed(WebDriver driver, String locatorType) {
+        WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(shortTimeout));
+        overrideGlobalTimeout(driver, shortTimeout);
+        explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByXpath(locatorType)));
     }
 }

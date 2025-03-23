@@ -11,39 +11,39 @@ import java.util.Random;
 public class BaseTest {
     WebDriver driver;
 
-     protected WebDriver getBrowserDriverName(String url, String browser) {
-         BrowserType browserType = BrowserType.valueOf(browser.toUpperCase());
-         switch (browserType) {
-             case CHROME: {
-                 driver = new ChromeDriver();
-                 break;
-             }
-             case EDGE: {
-                 driver = new EdgeDriver();
-                 break;
-             }
-             case FIREFOX: {
-                 driver = new FirefoxDriver();
-                 break;
-             }
-             default: {
-                 throw new IllegalArgumentException("BrowserName is invalid");
-             }
-         }
+    protected WebDriver getBrowserDriverName(String url, String browser) {
+        BrowserType browserType = BrowserType.valueOf(browser.toUpperCase());
+        switch (browserType) {
+            case CHROME: {
+                driver = new ChromeDriver();
+                break;
+            }
+            case EDGE: {
+                driver = new EdgeDriver();
+                break;
+            }
+            case FIREFOX: {
+                driver = new FirefoxDriver();
+                break;
+            }
+            default: {
+                throw new IllegalArgumentException("BrowserName is invalid");
+            }
+        }
 
-         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        driver.manage().window().maximize();
 
-         driver.get(url);
+        driver.get(url);
 
-         return driver;
-     }
+        return driver;
+    }
 
-     protected void quitBrowser(){
-         if (driver != null){
-             driver.quit();
-         }
-     }
+    protected void quitBrowser() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 
     protected int generateFakeNumber() {
         Random ran = new Random();

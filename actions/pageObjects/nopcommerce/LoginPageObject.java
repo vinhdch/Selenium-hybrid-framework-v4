@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 public class LoginPageObject extends BasePage {
     private WebDriver driver;
 
-    public LoginPageObject (WebDriver driver) {
+    public LoginPageObject(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -26,6 +26,7 @@ public class LoginPageObject extends BasePage {
         clickToElement(driver, LoginPageUI.LOGIN_BUTTON);
         return PageGeneratorManager.getPageInstance(HomePageObject.class, driver);
     }
+
     public LoginPageObject login(String emailAddress, String password) {
         enterEmailTextbox(emailAddress);
         enterPasswordTextbox(password);
