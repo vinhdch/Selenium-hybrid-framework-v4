@@ -13,6 +13,7 @@ public class GlobalConstants {
 
     public static final long SHORT_TIMEOUT = 15;
     public static final long LONG_TIMEOUT = 30;
+    public static final long THREAD_TIMEOUT = 2;
     public static final long RETRY_TEST_FAIL = 3;
 
     public static final String UPLOAD_FILE_JQUERY = "xpath=//input[@type='file']";

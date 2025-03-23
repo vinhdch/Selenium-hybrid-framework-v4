@@ -4,7 +4,6 @@ import PageUIs.nopcommerce.sidebar.CustomerInfoPageUI;
 import org.openqa.selenium.WebDriver;
 
 public class CustomerInfoPageObject extends SidebarPageObject {
-    private WebDriver driver;
 
     public CustomerInfoPageObject(WebDriver driver) {
         super(driver);
@@ -12,17 +11,17 @@ public class CustomerInfoPageObject extends SidebarPageObject {
     }
 
     public String getFirstNameValue() {
-        waitForElementVisible(driver, CustomerInfoPageUI.FIRST_NAME_TEXT_BOX);
-        return getElementAttribute(driver, CustomerInfoPageUI.FIRST_NAME_TEXT_BOX, "value");
+        waitForElementVisible(CustomerInfoPageUI.FIRST_NAME_TEXT_BOX);
+        return getElementAttribute(CustomerInfoPageUI.FIRST_NAME_TEXT_BOX, "value");
     }
 
     public String getLastNameValue() {
-        waitForElementVisible(driver, CustomerInfoPageUI.LAST_NAME_TEXT_BOX);
-        return getElementAttribute(driver, CustomerInfoPageUI.LAST_NAME_TEXT_BOX, "value");
+        waitForElementVisible(CustomerInfoPageUI.LAST_NAME_TEXT_BOX);
+        return getElementAttribute(CustomerInfoPageUI.LAST_NAME_TEXT_BOX, "value");
     }
 
     public String getEmailValue() {
-        waitForElementVisible(driver, CustomerInfoPageUI.EMAIL_TEXT_BOX);
-        return getElementAttribute(driver, CustomerInfoPageUI.EMAIL_TEXT_BOX, "value");
+        waitForElementVisible(CustomerInfoPageUI.EMAIL_TEXT_BOX);
+        return getElementAttribute(CustomerInfoPageUI.EMAIL_TEXT_BOX, "value");
     }
 }

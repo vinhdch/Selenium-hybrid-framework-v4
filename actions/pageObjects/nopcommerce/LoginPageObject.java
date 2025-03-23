@@ -8,22 +8,23 @@ public class LoginPageObject extends BasePage {
     private WebDriver driver;
 
     public LoginPageObject(WebDriver driver) {
+        super(driver);
         this.driver = driver;
     }
 
     public void enterEmailTextbox(String emailAddress) {
-        waitForAllElementVisible(driver, LoginPageUI.EMAIL_TEXT_BOX);
-        sendKeyToElement(driver, LoginPageUI.EMAIL_TEXT_BOX, emailAddress);
+        waitForAllElementVisible(LoginPageUI.EMAIL_TEXT_BOX);
+        sendKeyToElement(LoginPageUI.EMAIL_TEXT_BOX, emailAddress);
     }
 
     public void enterPasswordTextbox(String password) {
-        waitForAllElementVisible(driver, LoginPageUI.PASSWORD_TEXT_BOX);
-        sendKeyToElement(driver, LoginPageUI.PASSWORD_TEXT_BOX, password);
+        waitForAllElementVisible(LoginPageUI.PASSWORD_TEXT_BOX);
+        sendKeyToElement(LoginPageUI.PASSWORD_TEXT_BOX, password);
     }
 
     public HomePageObject clickLoginButton() {
-        waitForElementVisible(driver, LoginPageUI.LOGIN_BUTTON);
-        clickToElement(driver, LoginPageUI.LOGIN_BUTTON);
+        waitForElementVisible(LoginPageUI.LOGIN_BUTTON);
+        clickToElement(LoginPageUI.LOGIN_BUTTON);
         return PageGeneratorManager.getPageInstance(HomePageObject.class, driver);
     }
 

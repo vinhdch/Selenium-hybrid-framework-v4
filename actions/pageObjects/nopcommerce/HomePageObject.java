@@ -9,24 +9,25 @@ public class HomePageObject extends BasePage {
     private WebDriver driver;
 
     public HomePageObject(WebDriver driver) {
+        super(driver);
         this.driver = driver;
     }
 
     public RegisterPageObject clickToRegisterLink() {
-        waitForElementClickable(driver, HomePageUI.REGISTER_LINK);
-        clickToElement(driver, HomePageUI.REGISTER_LINK);
+        waitForElementClickable(HomePageUI.REGISTER_LINK);
+        clickToElement(HomePageUI.REGISTER_LINK);
         return PageGeneratorManager.getPageInstance(RegisterPageObject.class, driver);
     }
 
     public LoginPageObject clickLoginLink() {
-        waitForElementClickable(driver, HomePageUI.LOGIN_LINK);
-        clickToElement(driver, HomePageUI.LOGIN_LINK);
+        waitForElementClickable(HomePageUI.LOGIN_LINK);
+        clickToElement(HomePageUI.LOGIN_LINK);
         return PageGeneratorManager.getPageInstance(LoginPageObject.class, driver);
     }
 
     public CustomerInfoPageObject clickMyAccountLink() {
-        waitForElementClickable(driver, HomePageUI.MY_ACCOUNT_LINK);
-        clickToElement(driver, HomePageUI.MY_ACCOUNT_LINK);
+        waitForElementClickable(HomePageUI.MY_ACCOUNT_LINK);
+        clickToElement(HomePageUI.MY_ACCOUNT_LINK);
         return PageGeneratorManager.getPageInstance(CustomerInfoPageObject.class, driver);
     }
 }
