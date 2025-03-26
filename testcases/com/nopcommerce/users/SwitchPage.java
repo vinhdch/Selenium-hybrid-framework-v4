@@ -40,13 +40,15 @@ public class SwitchPage extends BaseTest {
     @Test
     public void TC_01_Register() {
 
-        registerPage = homePage.clickToRegisterLink();
+        registerPage = (RegisterPageObject) homePage.clickToHeaderLink("register");
 
-        registerPage.enterFirstNameTextbox(firstname);
-        registerPage.enterLastNameTextbox(lastname);
-        registerPage.enterEmailTextbox(email);
-        registerPage.enterPasswordTextbox(password);
-        registerPage.enterConfirmPasswordTextbox(password);
+        registerPage.enterToTextbox(firstname, "FirstName");
+        registerPage.enterToTextbox(lastname, "LastName");
+        registerPage.enterToTextbox(email, "Email");
+        registerPage.enterToTextbox(password, "Password");
+        registerPage.enterToTextbox(password, "ConfirmPassword");
+
+
         registerPage.clickToRegisterButton();
 
         Assert.assertEquals(registerPage.getRegisterSuccessMessage(), "Your registration completed");
@@ -57,41 +59,38 @@ public class SwitchPage extends BaseTest {
     @Test
     public void TC_02_Login() {
 
-        loginPage = homePage.clickLoginLink();
+        loginPage = (LoginPageObject) homePage.clickToHeaderLink("login");
 
-        loginPage.enterEmailTextbox(email);
-        loginPage.enterPasswordTextbox(password);
-
-        homePage = loginPage.clickLoginButton();
+        homePage = loginPage.login(email, password);
     }
 
     @Test
     public void TC_03_CustomerInfo() {
 
-        customerInfoPage = homePage.clickMyAccountLink();
+        customerInfoPage = (CustomerInfoPageObject) homePage.clickToHeaderLink("account");
 
-        Assert.assertEquals(customerInfoPage.getFirstNameValue(), firstname);
-        Assert.assertEquals(customerInfoPage.getLastNameValue(), lastname);
-        Assert.assertEquals(customerInfoPage.getEmailValue(), email);
+        Assert.assertEquals(customerInfoPage.getTextBoxValue("FirstName"), firstname);
+        Assert.assertEquals(customerInfoPage.getTextBoxValue("LastName"), lastname);
+        Assert.assertEquals(customerInfoPage.getTextBoxValue("Email"), email);
     }
 
     @Test
     public void TC_04_SwitchPage() {
 
         // customer -> address
-        addressesPage = customerInfoPage.OpenAddressPage(driver);
+        addressesPage = (AddressesPageObject) customerInfoPage.openSideMenuByPageName("Addresses");
 
         // address -> Reward points
-        rewardPointsPage = addressesPage.OpenRewardPointsPage(driver);
+        rewardPointsPage = (RewardPointsPageObject) addressesPage.openSideMenuByPageName("Reward points");
 
         // Reward points -> orders
-        ordersPage = rewardPointsPage.OpenOrdersPage(driver);
+        ordersPage = (OrdersPageObject) rewardPointsPage.openSideMenuByPageName("Orders");
 
         // order -> customer
-        customerInfoPage = ordersPage.OpenCustomerInfoPage(driver);
+        customerInfoPage = (CustomerInfoPageObject) ordersPage.openSideMenuByPageName("Customer info");
 
         // customer -> Reward points
-        rewardPointsPage = customerInfoPage.OpenRewardPointsPage(driver);
+        rewardPointsPage = (RewardPointsPageObject) customerInfoPage.openSideMenuByPageName("Reward points");
     }
 
     @AfterClass

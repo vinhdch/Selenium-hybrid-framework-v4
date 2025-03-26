@@ -12,29 +12,9 @@ public class RegisterPageObject extends BasePage {
         this.driver = driver;
     }
 
-    public void enterFirstNameTextbox(String firstname) {
-        waitForAllElementVisible(RegisterPageUI.FIRST_NAME_TEXT_BOX);
-        sendKeyToElement(RegisterPageUI.FIRST_NAME_TEXT_BOX, firstname);
-    }
-
-    public void enterLastNameTextbox(String lastname) {
-        waitForAllElementVisible(RegisterPageUI.LAST_NAME_TEXT_BOX);
-        sendKeyToElement(RegisterPageUI.LAST_NAME_TEXT_BOX, lastname);
-    }
-
-    public void enterEmailTextbox(String emailAddress) {
-        waitForAllElementVisible(RegisterPageUI.EMAIL_TEXT_BOX);
-        sendKeyToElement(RegisterPageUI.EMAIL_TEXT_BOX, emailAddress);
-    }
-
-    public void enterPasswordTextbox(String password) {
-        waitForAllElementVisible(RegisterPageUI.PASSWORD_TEXT_BOX);
-        sendKeyToElement(RegisterPageUI.PASSWORD_TEXT_BOX, password);
-    }
-
-    public void enterConfirmPasswordTextbox(String password) {
-        waitForAllElementVisible(RegisterPageUI.CONFIRM_PASSWORD_TEXT_BOX);
-        sendKeyToElement(RegisterPageUI.CONFIRM_PASSWORD_TEXT_BOX, password);
+    public void enterToTextbox(String inputValue, String textboxName) {
+        waitForAllElementVisible(RegisterPageUI.DYNAMIC_TEXT_BOX, textboxName);
+        sendKeyToElement(RegisterPageUI.DYNAMIC_TEXT_BOX, inputValue, textboxName);
     }
 
     public void clickToRegisterButton() {

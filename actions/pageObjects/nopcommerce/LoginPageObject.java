@@ -28,10 +28,10 @@ public class LoginPageObject extends BasePage {
         return PageGeneratorManager.getPageInstance(HomePageObject.class, driver);
     }
 
-    public LoginPageObject login(String emailAddress, String password) {
+    public HomePageObject login(String emailAddress, String password) {
         enterEmailTextbox(emailAddress);
         enterPasswordTextbox(password);
         clickLoginButton();
-        return PageGeneratorManager.getPageInstance(LoginPageObject.class, driver);
+        return PageGeneratorManager.getPageInstance(HomePageObject.class, driver);
     }
 }

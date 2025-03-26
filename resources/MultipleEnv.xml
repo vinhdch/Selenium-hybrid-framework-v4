@@ -4,15 +4,15 @@
 
     <parameter name="url" value="http://localhost/"/>
 
-    <test name="Run on Edge">
-        <parameter name="browserName" value="Edge"/>
+    <test name="Run on Chrome">
+        <parameter name="browserName" value="Chrome"/>
         <classes>
             <class name="com.nopcommerce.users.SwitchPage"/>
         </classes>
     </test>
 
-<!--    <test name="Run on chrome">-->
-<!--        <parameter name="browserName" value="CHROME"/>-->
+<!--    <test name="Run on firefox">-->
+<!--        <parameter name="browserName" value="Firefox"/>-->
 <!--        <classes>-->
 <!--            <class name="orangehrm.employee.Level_5_Multiple_Browser"/>-->
 <!--        </classes>-->
@@ -21,7 +21,7 @@
 <!--    <test name="Run on Edge">-->
 <!--        <parameter name="browserName" value="Edge"/>-->
 <!--        <classes>-->
-<!--            <class name="orangehrm.employee.Level_5_Multiple_Browser"/>-->
+<!--            <class name="com.nopcommerce.users.SwitchPage"/>-->
 <!--        </classes>-->
 <!--    </test>-->
 
