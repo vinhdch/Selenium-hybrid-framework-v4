@@ -1,4 +1,4 @@
-package PageUIs.nopcommerce;
+package PageUIs;
 
 public class RegisterPageUI {
 

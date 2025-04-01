@@ -1,6 +1,6 @@
-package pageObjects.nopcommerce.sidebar;
+package pageObjects.sidebar;
 
-import PageUIs.nopcommerce.sidebar.CustomerInfoPageUI;
+import PageUIs.sidebar.CustomerInfoPageUI;
 import org.openqa.selenium.WebDriver;
 
 public class CustomerInfoPageObject extends SidebarPageObject {

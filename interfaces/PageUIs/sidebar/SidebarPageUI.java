@@ -1,4 +1,4 @@
-package PageUIs.nopcommerce.sidebar;
+package PageUIs.sidebar;
 
 public class SidebarPageUI {
 

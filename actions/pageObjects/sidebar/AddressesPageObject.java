@@ -1,4 +1,4 @@
-package pageObjects.nopcommerce.sidebar;
+package pageObjects.sidebar;
 
 import org.openqa.selenium.WebDriver;
 

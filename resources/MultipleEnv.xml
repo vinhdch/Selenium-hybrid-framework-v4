@@ -2,12 +2,14 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="nopCommerce">
 
-    <parameter name="url" value="http://localhost/"/>
+    <parameter name="url" value="https://blueimp.github.io/jQuery-File-Upload/"/>
+<!--    <parameter name="url" value="http://localhost/"/>-->
+<!--    <parameter name="url" value="https://www.jqueryscript.net/demo/CRUD-Data-Grid-Plugin-jQuery-Quickgrid/"/>-->
 
     <test name="Run on Chrome">
         <parameter name="browserName" value="Chrome"/>
         <classes>
-            <class name="com.nopcommerce.users.SwitchPage"/>
+            <class name="Jquery_UploadFile"/>
         </classes>
     </test>
 

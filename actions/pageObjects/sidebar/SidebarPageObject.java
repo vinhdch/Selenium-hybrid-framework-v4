@@ -1,9 +1,9 @@
-package pageObjects.nopcommerce.sidebar;
+package pageObjects.sidebar;
 
-import PageUIs.nopcommerce.sidebar.SidebarPageUI;
+import PageUIs.sidebar.SidebarPageUI;
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
-import pageObjects.nopcommerce.PageGeneratorManager;
+import pageObjects.PageGeneratorManager;
 
 public class SidebarPageObject extends BasePage {
     private WebDriver driver;

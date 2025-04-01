@@ -1,5 +1,3 @@
-package com.nopcommerce.users;
-
 import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -7,11 +5,14 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.nopcommerce.*;
-import pageObjects.nopcommerce.sidebar.AddressesPageObject;
-import pageObjects.nopcommerce.sidebar.CustomerInfoPageObject;
-import pageObjects.nopcommerce.sidebar.OrdersPageObject;
-import pageObjects.nopcommerce.sidebar.RewardPointsPageObject;
+import pageObjects.HomePageObject;
+import pageObjects.LoginPageObject;
+import pageObjects.PageGeneratorManager;
+import pageObjects.RegisterPageObject;
+import pageObjects.sidebar.AddressesPageObject;
+import pageObjects.sidebar.CustomerInfoPageObject;
+import pageObjects.sidebar.OrdersPageObject;
+import pageObjects.sidebar.RewardPointsPageObject;
 
 public class SwitchPage extends BaseTest {
     WebDriver driver;
