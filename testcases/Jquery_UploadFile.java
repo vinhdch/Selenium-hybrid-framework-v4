@@ -1,7 +1,7 @@
 import commons.BaseTest;
 import commons.GlobalConstants;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
+import static org.testng.Assert.assertTrue;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
@@ -33,18 +33,18 @@ public class Jquery_UploadFile extends BaseTest {
         homePage.sleepInSecond(GlobalConstants.THREAD_TIMEOUT);
 
 
-        Assert.assertTrue(homePage.isFileUploadedByName(img1));
-        Assert.assertTrue(homePage.isFileUploadedByName(img2));
-        Assert.assertTrue(homePage.isFileUploadedByName(img3));
-        Assert.assertTrue(homePage.isFileUploadedByName(img4));
+        assertTrue(homePage.isFileUploadedByName(img1));
+        assertTrue(homePage.isFileUploadedByName(img2));
+        assertTrue(homePage.isFileUploadedByName(img3));
+        assertTrue(homePage.isFileUploadedByName(img4));
 
 
         homePage.clickToUploadButton();
 
-        Assert.assertTrue(homePage.isFileUploadedSuccess(img1));
-        Assert.assertTrue(homePage.isFileUploadedSuccess(img2));
-        Assert.assertTrue(homePage.isFileUploadedSuccess(img3));
-        Assert.assertTrue(homePage.isFileUploadedSuccess(img4));
+        assertTrue(homePage.isFileUploadedSuccess(img1));
+        assertTrue(homePage.isFileUploadedSuccess(img2));
+        assertTrue(homePage.isFileUploadedSuccess(img3));
+        assertTrue(homePage.isFileUploadedSuccess(img4));
 
     }
 

@@ -16,5 +16,5 @@ public class GlobalConstants {
     public static final long THREAD_TIMEOUT = 2000;
     public static final long RETRY_TEST_FAIL = 3;
 
-    public static final String UPLOAD_FILE_TYPE = "xpath=//input[@type='file']";
+    public static final String  UPLOAD_FILE_TYPE = "xpath=//input[@type='file']";
 }

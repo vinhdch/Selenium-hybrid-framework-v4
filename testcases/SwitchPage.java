@@ -1,6 +1,5 @@
 import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
@@ -52,7 +51,8 @@ public class SwitchPage extends BaseTest {
 
         registerPage.clickToRegisterButton();
 
-        Assert.assertEquals(registerPage.getRegisterSuccessMessage(), "Your registration completed");
+        log.info("TC_01_Register: get Register Success Message");
+        verifyEquals(registerPage.getRegisterSuccessMessage(), "Your registration completed!!!!!");
 
         homePage = registerPage.clickLogoutLink();
     }
@@ -70,9 +70,14 @@ public class SwitchPage extends BaseTest {
 
         customerInfoPage = (CustomerInfoPageObject) homePage.clickToHeaderLink("account");
 
-        Assert.assertEquals(customerInfoPage.getTextBoxValue("FirstName"), firstname);
-        Assert.assertEquals(customerInfoPage.getTextBoxValue("LastName"), lastname);
-        Assert.assertEquals(customerInfoPage.getTextBoxValue("Email"), email);
+        log.info("TC_03_CustomerInfo: get first name value textbox");
+        verifyEquals(customerInfoPage.getTextBoxValue("FirstName"), firstname);
+
+        log.info("TC_03_CustomerInfo: get last name value textbox");
+        verifyEquals(customerInfoPage.getTextBoxValue("LastName"), firstname);
+
+        log.info("TC_03_CustomerInfo: get email value name textbox");
+        verifyEquals(customerInfoPage.getTextBoxValue("Email"), email);
     }
 
     @Test

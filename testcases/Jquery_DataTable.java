@@ -1,6 +1,6 @@
 import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
+import static org.testng.Assert.assertTrue;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
@@ -23,13 +23,13 @@ public class Jquery_DataTable extends BaseTest {
     @Test
     public void TC_01_Pagination() {
         homePage.openPageByNumber("2");
-        Assert.assertTrue(homePage.pageIsActive("2"));
+        assertTrue(homePage.pageIsActive("2"));
 
         homePage.enterToTextboxByHeaderName("Country", "ASIA");
-        Assert.assertTrue(homePage.isRowValueDisplayed("country", "ASIA"));
+        assertTrue(homePage.isRowValueDisplayed("country", "ASIA"));
 
         homePage.enterToTextboxByHeaderName("Males", "803");
-        Assert.assertTrue(homePage.isRowValueDisplayed("males", "803"));
+        assertTrue(homePage.isRowValueDisplayed("males", "803"));
     }
 
     @AfterClass

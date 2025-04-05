@@ -9,6 +9,7 @@
       <sourceFolder url="file://$MODULE_DIR$/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/testcases" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/utils" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="21" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -16,5 +17,7 @@
     <orderEntry type="library" name="commons-codec-1.16.1" level="project" />
     <orderEntry type="library" name="selenium-server-4.26.0" level="project" />
     <orderEntry type="library" name="testng-7.8.0" level="project" />
+    <orderEntry type="library" name="log4j-core-2.24.3" level="project" />
+    <orderEntry type="library" name="log4j-api-2.24.3" level="project" />
   </component>
 </module>
