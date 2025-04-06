@@ -1,4 +1,7 @@
 import commons.BaseTest;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -37,6 +40,8 @@ public class SwitchPage extends BaseTest {
         homePage = PageGeneratorManager.getPageInstance(HomePageObject.class, driver);
     }
 
+    @Description("Register an account")
+    @Severity(SeverityLevel.NORMAL)
     @Test
     public void TC_01_Register() {
 
@@ -51,12 +56,13 @@ public class SwitchPage extends BaseTest {
 
         registerPage.clickToRegisterButton();
 
-        log.info("TC_01_Register: get Register Success Message");
         verifyEquals(registerPage.getRegisterSuccessMessage(), "Your registration completed!!!!!");
 
         homePage = registerPage.clickLogoutLink();
     }
 
+    @Description("Login")
+    @Severity(SeverityLevel.NORMAL)
     @Test
     public void TC_02_Login() {
 
@@ -65,21 +71,22 @@ public class SwitchPage extends BaseTest {
         homePage = loginPage.login(email, password);
     }
 
+    @Description("Verify customer info")
+    @Severity(SeverityLevel.MINOR)
     @Test
     public void TC_03_CustomerInfo() {
 
         customerInfoPage = (CustomerInfoPageObject) homePage.clickToHeaderLink("account");
 
-        log.info("TC_03_CustomerInfo: get first name value textbox");
         verifyEquals(customerInfoPage.getTextBoxValue("FirstName"), firstname);
 
-        log.info("TC_03_CustomerInfo: get last name value textbox");
-        verifyEquals(customerInfoPage.getTextBoxValue("LastName"), firstname);
+        verifyEquals(customerInfoPage.getTextBoxValue("LastName"), lastname);
 
-        log.info("TC_03_CustomerInfo: get email value name textbox");
         verifyEquals(customerInfoPage.getTextBoxValue("Email"), email);
     }
 
+    @Description("Switch page")
+    @Severity(SeverityLevel.MINOR)
     @Test
     public void TC_04_SwitchPage() {
 

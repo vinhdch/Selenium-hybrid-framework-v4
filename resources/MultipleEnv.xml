@@ -3,7 +3,8 @@
 <suite name="nopCommerce">
 
     <listeners>
-        <listener class-name="commons.MethodListener"></listener>
+        <listener class-name="reportConfig.MethodListener"></listener>
+        <listener class-name="reportConfig.AllureTestListener"></listener>
     </listeners>
 
 <!--    <parameter name="url" value="https://blueimp.github.io/jQuery-File-Upload/"/>-->

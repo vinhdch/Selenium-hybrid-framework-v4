@@ -2,6 +2,7 @@ package pageObjects.sidebar;
 
 import PageUIs.sidebar.SidebarPageUI;
 import commons.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import pageObjects.PageGeneratorManager;
 
@@ -13,6 +14,7 @@ public class SidebarPageObject extends BasePage {
         this.driver=driver;
     }
 
+    @Step("open side menu: {0}")
     public Object openSideMenuByPageName(String pageName) {
         waitForElementClickable(SidebarPageUI.DYNAMIC_SIDE_MENU_LINK, pageName);
         clickToElement(SidebarPageUI.DYNAMIC_SIDE_MENU_LINK, pageName);

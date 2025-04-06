@@ -19,5 +19,7 @@
     <orderEntry type="library" name="testng-7.8.0" level="project" />
     <orderEntry type="library" name="log4j-core-2.24.3" level="project" />
     <orderEntry type="library" name="log4j-api-2.24.3" level="project" />
+    <orderEntry type="library" name="allure-java-commons-2.24.0" level="project" />
+    <orderEntry type="library" name="aspectjweaver-1.9.22.1" level="project" />
   </component>
 </module>
