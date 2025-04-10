@@ -17,4 +17,10 @@ public class GlobalConstants {
     public static final long RETRY_TEST_FAIL = 3;
 
     public static final String  UPLOAD_FILE_TYPE = "xpath=//input[@type='file']";
+
+    public static final String  JIRA_URL = "https://vinh01647533406.atlassian.net/";
+    public static final String  JIRA_USERNAME = "vinh01647533406@gmail.com";
+    public static final String  JIRA_API_TOKEN = "ATATT3xFfGF0lfnOZNQUIt8CQFTo5_ygTi2BaZyUy8fQyvJ07C6_jf5Ad71LogJ_yMIgYfLHydmvDiFV5PU3d1nlFq70zCQO4_rFAwRMiiBNQvIzeV9Hh1h" +
+            "rsEH8nlqAyzCuuzUrPQLChyuV_5zgvKdLJOGNEHoo1_cEp-iTh6nhTp1nZccu_tk=02494283";
+    public static final String  JIRA_PROJECT_KEY = "NOPVINHDCH";
 }

@@ -2,6 +2,7 @@ import commons.BaseTest;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import jiraConfig.JiraCreateIssue;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -15,6 +16,7 @@ import pageObjects.sidebar.AddressesPageObject;
 import pageObjects.sidebar.CustomerInfoPageObject;
 import pageObjects.sidebar.OrdersPageObject;
 import pageObjects.sidebar.RewardPointsPageObject;
+import utilities.Utils;
 
 public class SwitchPage extends BaseTest {
     WebDriver driver;
@@ -29,17 +31,18 @@ public class SwitchPage extends BaseTest {
 
     @Parameters({"url", "browserName"})
     @BeforeClass
-    public void beforeClass(String urlValue, String browser) {
-        driver = getBrowserDriverName(urlValue, browser);
+    public void beforeClass(String urlValue, String browserName) {
+        driver = getBrowserDriverName(urlValue, browserName);
 
         firstname = "John";
         lastname = "Nathan";
-        email = "orangehrm" + generateFakeNumber() + "@gmail.com";
+        email = "orangehrm" + Utils.generateRandomNumber() + "@gmail.com";
         password = "qwerp2345$%$%0";
 
         homePage = PageGeneratorManager.getPageInstance(HomePageObject.class, driver);
     }
 
+    @JiraCreateIssue(isCreateIssue = true)
     @Description("Register an account")
     @Severity(SeverityLevel.NORMAL)
     @Test
@@ -61,6 +64,7 @@ public class SwitchPage extends BaseTest {
         homePage = registerPage.clickLogoutLink();
     }
 
+    @JiraCreateIssue(isCreateIssue = true)
     @Description("Login")
     @Severity(SeverityLevel.NORMAL)
     @Test
@@ -71,6 +75,7 @@ public class SwitchPage extends BaseTest {
         homePage = loginPage.login(email, password);
     }
 
+    @JiraCreateIssue(isCreateIssue = true)
     @Description("Verify customer info")
     @Severity(SeverityLevel.MINOR)
     @Test
@@ -85,6 +90,7 @@ public class SwitchPage extends BaseTest {
         verifyEquals(customerInfoPage.getTextBoxValue("Email"), email);
     }
 
+    @JiraCreateIssue(isCreateIssue = true)
     @Description("Switch page")
     @Severity(SeverityLevel.MINOR)
     @Test

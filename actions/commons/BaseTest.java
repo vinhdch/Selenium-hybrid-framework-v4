@@ -12,7 +12,6 @@ import org.testng.annotations.BeforeSuite;
 
 import java.io.File;
 import java.time.Duration;
-import java.util.Random;
 
 public class BaseTest {
     private WebDriver driver;
@@ -58,11 +57,6 @@ public class BaseTest {
         if (driver != null) {
             driver.quit();
         }
-    }
-
-    protected int generateFakeNumber() {
-        Random ran = new Random();
-        return ran.nextInt(99999);
     }
 
     protected boolean verifyTrue(boolean condition) {

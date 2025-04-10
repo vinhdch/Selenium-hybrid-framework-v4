@@ -5,6 +5,7 @@
     <listeners>
         <listener class-name="reportConfig.MethodListener"></listener>
         <listener class-name="reportConfig.AllureTestListener"></listener>
+        <listener class-name="jiraConfig.JiraListener"></listener>
     </listeners>
 
 <!--    <parameter name="url" value="https://blueimp.github.io/jQuery-File-Upload/"/>-->
